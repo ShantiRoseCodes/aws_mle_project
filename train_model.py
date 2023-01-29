@@ -231,9 +231,9 @@ if __name__=='__main__':
     parser.add_argument(
         "--lr",
         type = float ,
-        default = 0.02, 
+        default = 0.1, 
         metavar = "LR",
-        help = "learning rate (default : 0.02)"
+        help = "learning rate (default : 0.1)"
     )
 
     parser.add_argument("--hosts", type=list, default=json.loads(os.environ["SM_HOSTS"]))
