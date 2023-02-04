@@ -217,7 +217,7 @@ if __name__=='__main__':
     parser.add_argument(
         "--batch-size",
         type = int ,
-        default = 32, 
+        default = 128, 
         metavar = "N",
         help = "input batch size for training (default : 32)"
     )
@@ -231,9 +231,9 @@ if __name__=='__main__':
     parser.add_argument(
         "--lr",
         type = float ,
-        default = 0.1, 
+        default = 0.02, 
         metavar = "LR",
-        help = "learning rate (default : 0.1)"
+        help = "learning rate (default : 0.02)"
     )
 
     parser.add_argument("--hosts", type=list, default=json.loads(os.environ["SM_HOSTS"]))

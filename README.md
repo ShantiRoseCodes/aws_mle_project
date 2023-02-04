@@ -37,6 +37,8 @@ Varying the batch size, on the other hand, may help with the non-uniform distrib
 
 The ranges were chosen taking into account that the training time and costs need to be optimized. These were taken into account after the training and testing loss from the inital training led to a plot that had telltale signs of overfitting.
 
+Based on comments from my initial profile report, which advised choosing an instance type with a reduced capacity, another difference between the 2 trials would be the reduction from ml.g4dn.4xlarge to ml.m5.large.
+
 **Initial Hyperparameters**
 
 ```python
@@ -62,6 +64,11 @@ hyperparameter_ranges = {
 
 ## Debugging and Profiling
 **TODO**: Give an overview of how you performed model debugging and profiling in Sagemaker
+
+The initial cross entropy loss for training and testing shows that there is a sudden increase in the evaluation plot which suggests overfitting. 
+
+**Initial Ouput
+![Initial Cross Entropy Loss Output for Training and Testing](initiallossplot.png)
 
 ### Results
 **TODO**: What are the results/insights did you get by profiling/debugging your model?
