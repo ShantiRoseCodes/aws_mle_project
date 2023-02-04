@@ -15,7 +15,24 @@ The project is designed to be dataset independent so if there is a dataset that 
 Upload the data to an S3 bucket through the AWS Gateway so that SageMaker has access to the data. 
 
 ## Hyperparameter Tuning
-What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
+ResNet18, which is widely used in computer vision tasks, was chosen for this project. As it uses residual connections which bypasses information around the network, it is not prone to vanishing gradients and is known for better performance and faster convergence.
+
+It was also chosen due to its computational efficiency, considering that the budget for this project is quite limited. 
+
+With the need to be conservative in terms of memory and running expenses, the 2 hyperparameters, learning rate and batch size were chosen.
+
+Learning rate has the potential to decrease the losses caused by a faster gradient descent. A learning rate that is too slow, however, can lead to the possibility of not reaching convergence.
+
+Varying the batch size, on the other hand, may help with the non-uniform distribution of images for each class, however, may lead to poor generalization.
+
+The ranges were chosen taking into account that the training time and costs need to be optimized.
+
+![The results of Hyperparameter Tuning](bestParameters.png)
+
+
+
+
 
 Remember that your README should:
 - Include a screenshot of completed training jobs
