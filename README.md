@@ -14,6 +14,15 @@ The project is designed to be dataset independent so if there is a dataset that 
 ### Access
 Upload the data to an S3 bucket through the AWS Gateway so that SageMaker has access to the data. 
 
+
+Remember that your README should:
+- Include a screenshot of completed training jobs
+- Logs metrics during the training process
+- Tune at least two hyperparameters
+- Retrieve the best best hyperparameters from all your training jobs
+
+
+
 ## Hyperparameter Tuning
 
 ResNet18, which is widely used in computer vision tasks, was chosen for this project. As it uses residual connections which bypasses information around the network, it is not prone to vanishing gradients and is known for better performance and faster convergence.
@@ -26,19 +35,30 @@ Learning rate has the potential to decrease the losses caused by a faster gradie
 
 Varying the batch size, on the other hand, may help with the non-uniform distribution of images for each class, however, may lead to poor generalization.
 
-The ranges were chosen taking into account that the training time and costs need to be optimized.
+The ranges were chosen taking into account that the training time and costs need to be optimized. These were taken into account after the training and testing loss from the inital training led to a plot that had telltale signs of overfitting.
 
-![The results of Hyperparameter Tuning](bestParameters.png)
+**Initial Hyperparameters**
 
+```python
+hyperparameter_ranges = {
+        "lr" : ContinuousParameter(0.001,0.1),
+        "batch-size" : CategoricalParameter([32,64,128])
+}
+```
 
+![Results From Initial Hyperparameters](initialhporesults.png)
 
+**Final Hyperparameters**
 
+```python
+hyperparameter_ranges = {
+        "lr" : ContinuousParameter(0.01,0.1),
+        "batch-size" : CategoricalParameter([32,64,128])
+}
+```
 
-Remember that your README should:
-- Include a screenshot of completed training jobs
-- Logs metrics during the training process
-- Tune at least two hyperparameters
-- Retrieve the best best hyperparameters from all your training jobs
+![The results of Second Hyperparameter Tuning](bestParameters.png)
+
 
 ## Debugging and Profiling
 **TODO**: Give an overview of how you performed model debugging and profiling in Sagemaker
