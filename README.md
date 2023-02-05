@@ -84,15 +84,20 @@ debug_config = DebuggerHookConfig(collection_configs=collection_configs)
 ### Results
 **TODO**: What are the results/insights did you get by profiling/debugging your model?
 
-The cross entropy loss for training and testing shows that there is a sudden increase in the evaluation plot which suggests overfitting. 
+The training plot seems to have stopped too early and although the evaluation data showed a smaller loss, it is quite disturbing to see that the shape of the plot is not as smooth as could be expected. It seems that overfitting has occurred in this case. 
+
+Looking into the profile report recommendations, it is quite evident that an increase in batch size is necessary to solve this problem. The profile report also suggests that an instance type of a lower capacity should be chosen. 
+
+It also shows that the initializing and loading of data need to be optimized as it is taking too much time. 
 
 **Cross Entropy Loss Ouput
 ![Initial Cross Entropy Loss Output for Training and Testing](lossplot.png)
 
+**Cloudwatch Logs
+![Cloudwatch Logs](trainingcloudwatch.png)
+
 **TODO** Remember to provide the profiler html/pdf file in your submission.
-
-<iframe src="profiler-report.html" frameborder="0" height="400" width="100%"></iframe>
-
+[Download Profiler-Report](https://d-5rhpy8nvi8bi.studio.us-east-1.sagemaker.aws/jupyter/default/files/CD0387-deep-learning-topics-within-computer-vision-nlp-project-starter/profiler-report.html?_xsrf=2%7Cc09a21ca%7Cf26e920073093e8351239024c7c11d63%7C1673450631)
 
 
 ## Model Deployment
