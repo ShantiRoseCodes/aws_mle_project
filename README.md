@@ -49,7 +49,7 @@ hyperparameter_ranges = {
 }
 ```
 
-![Results From Initial Hyperparameters](bestParameters.png)
+![Results From Initial Hyperparameters](theBestParameters.png)
 
 
 
