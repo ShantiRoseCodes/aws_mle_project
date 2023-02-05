@@ -35,9 +35,10 @@ Learning rate has the potential to decrease the losses caused by a faster gradie
 
 Varying the batch size, on the other hand, may help with the non-uniform distribution of images for each class, however, may lead to poor generalization.
 
-The ranges were chosen taking into account that the training time and costs need to be optimized. These were taken into account after the training and testing loss from the inital training led to a plot that had telltale signs of overfitting.
+The ranges were chosen taking the details mentioned above into account, while considering time and limitations budget. 
 
-Based on comments from my initial profile report, which advised choosing an instance type with a reduced capacity, another difference between the 2 trials would be the reduction from ml.g4dn.4xlarge to ml.m5.large.
+Taking into account the batch sizes used for the training and that there are a total of 6683 images in my training data, it was necessary to run the training using parallel jobs. As epochs were not added to the hyperparameters to be tuned, the hyperparameter tuning instances consisted of multiple training jobs. 
+
 
 **Initial Hyperparameters**
 
@@ -48,18 +49,8 @@ hyperparameter_ranges = {
 }
 ```
 
-![Results From Initial Hyperparameters](hporesults.png)
+![Results From Initial Hyperparameters](bestParameters.png)
 
-**Final Hyperparameters**
-
-```python
-hyperparameter_ranges = {
-        "lr" : ContinuousParameter(0.01,0.1),
-        "batch-size" : CategoricalParameter([32,64,128])
-}
-```
-
-![The results of Second Hyperparameter Tuning](bestParameters.png)
 
 
 ## Debugging and Profiling
