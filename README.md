@@ -91,7 +91,7 @@ The cross entropy loss for training and testing shows that there is a sudden inc
 
 **TODO** Remember to provide the profiler html/pdf file in your submission.
 
-<iframe src="profile-report.html" frameborder="0" height="400" width="100%"></iframe>
+<iframe src="profiler-report.html" frameborder="0" height="400" width="100%"></iframe>
 
 
 
