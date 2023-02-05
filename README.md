@@ -125,6 +125,6 @@ Another error that was encountered during enpoint invocation was 'resnet object 
 
 **TODO** Remember to provide a screenshot of the deployed active endpoint in Sagemaker.
 
-![Endpoint Screenshot](enpoint.png)
+![Endpoint Screenshot](endpoint.png)
 
 
