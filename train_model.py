@@ -233,7 +233,7 @@ if __name__=='__main__':
         type = float ,
         default = 0.02, 
         metavar = "LR",
-        help = "learning rate (default : 0.02)"
+        help = "learning rate (default : 0.002)"
     )
 
     parser.add_argument("--hosts", type=list, default=json.loads(os.environ["SM_HOSTS"]))
