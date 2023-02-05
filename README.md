@@ -103,7 +103,28 @@ It also shows that the initializing and loading of data need to be optimized as 
 ## Model Deployment
 **TODO**: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
+```python
+model_location = "s3://sagemaker-us-east-1-057024489761/smdebugger-dogImages-pytorch-2023-01-29-14-54-24-918/output/model.tar.gz"
+
+pytorch_model = PyTorchModel(model_data=model_location, 
+                             role=get_execution_role(), 
+                             entry_point='inference.py', 
+                             py_version='py36', 
+                             framework_version='1.8')
+
+predictor = pytorch_model.deploy(initial_instance_count=1, instance_type='ml.m5.large')
+```
+
+To lower costs and to follow the recommendation in the profiler report, a lower instance type was chosen for the deployment of the model. 
+
+An infernce.py script was created to facilitate model loading.
+
+To solve the 'smdebug module not found' error that occurred during the endpoint invocation, installing smdebug was added to the model function in the script.
+
+Another error that was encountered during enpoint invocation was 'resnet object has no copy attribute' after running the 'load_state_dict function call' in the model function.
+
 **TODO** Remember to provide a screenshot of the deployed active endpoint in Sagemaker.
 
-## Standout Suggestions
-**TODO (Optional):** This is where you can provide information about any standout suggestions that you have attempted.
+![Endpoint Screenshot](enpoint.png)
+
+
