@@ -48,7 +48,7 @@ hyperparameter_ranges = {
 }
 ```
 
-![Results From Initial Hyperparameters](initialhporesults.png)
+![Results From Initial Hyperparameters](hporesults.png)
 
 **Final Hyperparameters**
 
@@ -68,7 +68,7 @@ hyperparameter_ranges = {
 The initial cross entropy loss for training and testing shows that there is a sudden increase in the evaluation plot which suggests overfitting. 
 
 **Initial Ouput
-![Initial Cross Entropy Loss Output for Training and Testing](initiallossplot.png)
+![Initial Cross Entropy Loss Output for Training and Testing](lossplot.png)
 
 ### Results
 **TODO**: What are the results/insights did you get by profiling/debugging your model?
