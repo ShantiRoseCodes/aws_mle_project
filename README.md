@@ -56,15 +56,43 @@ hyperparameter_ranges = {
 ## Debugging and Profiling
 **TODO**: Give an overview of how you performed model debugging and profiling in Sagemaker
 
-The initial cross entropy loss for training and testing shows that there is a sudden increase in the evaluation plot which suggests overfitting. 
+The best hyperparameters that resulted from the hyperparameter tuning were used for the training model. Although the RESNET18 is less susceptible to vanishing gradients, it was still added as one of the rules for the model debugging configuration, along with overfitting and loss not decreasing. It was also configured to save the training interval every 100 steps and the evaluation interval every 10 steps. 
 
-**Initial Ouput
-![Initial Cross Entropy Loss Output for Training and Testing](lossplot.png)
+The reason for this is that there are more training samples than there are interval steps. Also, the smaller intervals in the evaluation data will magnify anomalies in the model's performance. 
+
+To connect this to the train_and_deploy script, smdebug hooks were added to the script.
+
+```python
+hyperparameters = {"batch-size": 32, "lr": 0.0024148958723497088}
+
+rules = [
+    Rule.sagemaker(rule_configs.vanishing_gradient()),
+    Rule.sagemaker(rule_configs.overfit()),
+    Rule.sagemaker(rule_configs.loss_not_decreasing()),
+    ProfilerRule.sagemaker(rule_configs.ProfilerReport()),
+]
+collection_configs=[
+    CollectionConfig(name="CrossEntropyLoss_output_0",parameters={
+                "include_regex": "CrossEntropyLoss_output_0", 
+                "train.save_interval": "100","eval.save_interval": "10"})
+]
+
+profiler_config = ProfilerConfig(system_monitor_interval_millis=500, framework_profile_params=FrameworkProfile(num_steps=10))
+debug_config = DebuggerHookConfig(collection_configs=collection_configs)
+```
 
 ### Results
 **TODO**: What are the results/insights did you get by profiling/debugging your model?
 
+The cross entropy loss for training and testing shows that there is a sudden increase in the evaluation plot which suggests overfitting. 
+
+**Cross Entropy Loss Ouput
+![Initial Cross Entropy Loss Output for Training and Testing](lossplot.png)
+
 **TODO** Remember to provide the profiler html/pdf file in your submission.
+
+<iframe src="profile-report.html" frameborder="0" height="400" width="100%"></iframe>
+
 
 
 ## Model Deployment
